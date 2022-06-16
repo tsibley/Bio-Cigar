@@ -9,9 +9,14 @@ Bio::Cigar - Parse CIGAR strings and translate coordinates to/from reference/que
     my $cigar = Bio::Cigar->new("2M1D1M1I4M");
     say "Query length is ", $cigar->query_length;
     say "Reference length is ", $cigar->reference_length;
-    
+
     my ($qpos, $op) = $cigar->rpos_to_qpos(3);
     say "Alignment operation at reference position 3 is $op";
+
+    my $query = "GCAAATGC";
+    my $ref   = "AAAAGCAAATGC";
+    my $aln   = $cigar->align($query, $ref, 5);  # align query to pos 5 of ref
+    say foreach @$aln;
 
 # DESCRIPTION
 
@@ -122,6 +127,16 @@ first return value.
 Returns a new Bio::Cigar object with a CIGAR string that's the reverse of this
 one, i.e. the last operation becomes the first, the second-to-last the second,
 etc. until the first operation becomes the last.
+
+## align($query, $reference, $start\_pos=1, $reversed=0)
+
+Takes a query sequence and a reference sequence, and aligns them using gap
+characters (`-`) according to the CIGAR string. Optionally, the leftmost
+reference position (origin 1) can be passed, i.e. the query is aligned
+starting at that position. When `$reversed` is given a true value, the
+reverse complement of the passed query sequence is used to generate the
+alignment. Returns an array ref storing the aligned sequences in order \[query,
+ref\].
 
 # AUTHOR
 

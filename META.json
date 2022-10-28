@@ -54,13 +54,13 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/MullinsLab/Bio-Cigar/issues"
+         "web" : "https://github.com/tsibley/Bio-Cigar/issues"
       },
-      "homepage" : "https://github.com/MullinsLab/Bio-Cigar",
+      "homepage" : "https://github.com/tsibley/Bio-Cigar",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/MullinsLab/Bio-Cigar.git",
-         "web" : "https://github.com/MullinsLab/Bio-Cigar"
+         "url" : "https://github.com/tsibley/Bio-Cigar.git",
+         "web" : "https://github.com/tsibley/Bio-Cigar"
       }
    },
    "version" : "1.01",

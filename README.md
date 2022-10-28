@@ -117,6 +117,12 @@ Takes a query position and returns the operation at that position.  Simply
 a shortcut for calling ["qpos\_to\_rpos"](#qpos_to_rpos) in list context and discarding the
 first return value.
 
+## reversed
+
+Returns a new Bio::Cigar object with a CIGAR string that's the reverse of this
+one, i.e. the last operation becomes the first, the second-to-last the second,
+etc. until the first operation becomes the last.
+
 # AUTHOR
 
 Thomas Sibley <trsibley@uw.edu>

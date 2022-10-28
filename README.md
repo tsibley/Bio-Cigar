@@ -147,6 +147,8 @@ codes `ATCGU` are currently supported for reverse complementation.**
 
 Thomas Sibley <trsibley@uw.edu>
 
+Felix Kühnl <felix@bioinf.uni-leipzig.de>
+
 # COPYRIGHT
 
 Copyright 2014- Mullins Lab, Department of Microbiology, University of Washington.

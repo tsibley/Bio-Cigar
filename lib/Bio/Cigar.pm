@@ -405,6 +405,8 @@ sub align {
 
 Thomas Sibley E<lt>trsibley@uw.eduE<gt>
 
+Felix Kühnl E<lt>felix@bioinf.uni-leipzig.deE<gt>
+
 =head1 COPYRIGHT
 
 Copyright 2014- Mullins Lab, Department of Microbiology, University of Washington.

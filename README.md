@@ -9,9 +9,14 @@ Bio::Cigar - Parse CIGAR strings and translate coordinates to/from reference/que
     my $cigar = Bio::Cigar->new("2M1D1M1I4M");
     say "Query length is ", $cigar->query_length;
     say "Reference length is ", $cigar->reference_length;
-    
+
     my ($qpos, $op) = $cigar->rpos_to_qpos(3);
     say "Alignment operation at reference position 3 is $op";
+
+    my $query = "GCAAATGC";
+    my $ref   = "AAAAGCAAATGC";
+    my $aln   = $cigar->align($query, $ref, 5);  # align query to pos 5 of ref
+    say foreach @$aln;
 
 # DESCRIPTION
 
@@ -123,9 +128,26 @@ Returns a new Bio::Cigar object with a CIGAR string that's the reverse of this
 one, i.e. the last operation becomes the first, the second-to-last the second,
 etc. until the first operation becomes the last.
 
+## align($query, $reference, $start\_pos=1, $reversed=0)
+
+Takes a query sequence and a reference sequence and aligns them according to
+the CIGAR string, using gap characters (`-`) for indels and spaces for soft
+clipping.  This is pure string manipulation and as such the match and mismatch
+operators (`=` and `X`) are assumed to be correct for the given input
+sequences and not verified.  Returns an array ref of `[query seq, ref seq]`.
+
+Optionally, the leftmost reference position (origin 1) can be passed, i.e. the
+query is aligned starting at that position.
+
+When `$reversed` is given a true value, the reverse complement of the passed
+query sequence is used to generate the alignment.  **Only the IUPAC nucleotide
+codes `ATCGU` are currently supported for reverse complementation.**
+
 # AUTHOR
 
 Thomas Sibley <trsibley@uw.edu>
+
+Felix Kühnl <felix@bioinf.uni-leipzig.de>
 
 # COPYRIGHT
 

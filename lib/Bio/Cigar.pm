@@ -199,13 +199,18 @@ etc. until the first operation becomes the last.
 
 =head2 align($query, $reference, $start_pos=1, $reversed=0)
 
-Takes a query sequence and a reference sequence, and aligns them using gap
-characters (C<->) according to the CIGAR string. Optionally, the leftmost
-reference position (origin 1) can be passed, i.e. the query is aligned
-starting at that position. When C<$reversed> is given a true value, the
-reverse complement of the passed query sequence is used to generate the
-alignment. Returns an array ref storing the aligned sequences in order [query,
-ref].
+Takes a query sequence and a reference sequence and aligns them according to
+the CIGAR string, using gap characters (C<->) for indels and spaces for soft
+clipping.  This is pure string manipulation and as such the match and mismatch
+operators (C<=> and C<X>) are assumed to be correct for the given input
+sequences and not verified.  Returns an array ref of C<[query seq, ref seq]>.
+
+Optionally, the leftmost reference position (origin 1) can be passed, i.e. the
+query is aligned starting at that position.
+
+When C<$reversed> is given a true value, the reverse complement of the passed
+query sequence is used to generate the alignment.  B<Only the IUPAC nucleotide
+codes C<ATCGU> are currently supported for reverse complementation.>
 
 =cut
 

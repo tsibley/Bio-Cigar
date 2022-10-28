@@ -130,13 +130,18 @@ etc. until the first operation becomes the last.
 
 ## align($query, $reference, $start\_pos=1, $reversed=0)
 
-Takes a query sequence and a reference sequence, and aligns them using gap
-characters (`-`) according to the CIGAR string. Optionally, the leftmost
-reference position (origin 1) can be passed, i.e. the query is aligned
-starting at that position. When `$reversed` is given a true value, the
-reverse complement of the passed query sequence is used to generate the
-alignment. Returns an array ref storing the aligned sequences in order \[query,
-ref\].
+Takes a query sequence and a reference sequence and aligns them according to
+the CIGAR string, using gap characters (`-`) for indels and spaces for soft
+clipping.  This is pure string manipulation and as such the match and mismatch
+operators (`=` and `X`) are assumed to be correct for the given input
+sequences and not verified.  Returns an array ref of `[query seq, ref seq]`.
+
+Optionally, the leftmost reference position (origin 1) can be passed, i.e. the
+query is aligned starting at that position.
+
+When `$reversed` is given a true value, the reverse complement of the passed
+query sequence is used to generate the alignment.  **Only the IUPAC nucleotide
+codes `ATCGU` are currently supported for reverse complementation.**
 
 # AUTHOR
 
